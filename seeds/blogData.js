@@ -14,7 +14,7 @@ const postData = [
     title: 'Cosmos Flowers',
     artist: 'WStudio',
     exhibition_date: 'May 05, 2017',
-    gallery_id: 1,
+    gallery_id: 2,
     filename: '02-cosmos-flowers.jpg',
     description: 'Pink cosmos flowers against a blue sky.',
   },

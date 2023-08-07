@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
      blogpost.get({ plain : true })
     });
     res.render('homepage', {
-        blogposts: blogposts,
+        blogpost: blogpost,
         loggedIn: req.session.loggedIn,
         username: req.session.username,
     });
