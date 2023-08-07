@@ -1,9 +1,12 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+const bcrypt = require('bcrypt');
 
 // new user
 router.post('/', async (req, res) => {
   try {
+    const newUser = req.body;
+    newUser.password = await bcrypt.hash(req.body.password, 10);
     const dbUserData = await User.create({
       user: req.body.username,
       email: req.body.email,
