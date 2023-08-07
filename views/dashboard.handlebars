@@ -1,7 +1,11 @@
-<section class="post">
-  <div class="post-details">
-    <h3>{{title}}</h3>
-    <p>Author: {{author}}</p>
-    <p>{{ content }}</p>
-  </div>
+<section class="container-fluid">
+  <p>My Dashboard</p>
+{{#each blogposts}}
+<div class="container">
+{{> dashboard-details}}
+</div>
+{{/each}}
 </section>
+</div>
+<button onclick="window.location.href='/newblogpost';">Add New Post</button>
+</div>

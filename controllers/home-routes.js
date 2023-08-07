@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Blogpost, User } = require('../models');
+const withAuth = require('../utils/auth');
 
 router.get('/', (req, res) => {
     res.render('homepage')
@@ -56,6 +57,17 @@ router.get('/dashboard', async (req, res) => {
     }
   });
 
-
+  router.get('/newblogpost', withAuth, async (req, res) => {
+    try {
+        res.render('new-blogpost', {
+            loggedIn: req.session.loggedIn,
+            userId: req.session.userId,
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+  });
+  
   
 module.exports = router;
