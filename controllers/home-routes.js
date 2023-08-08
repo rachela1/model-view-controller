@@ -44,7 +44,7 @@ router.get('/dashboard', async (req, res) => {
     }
   });
 
-  router.get('/newblogpost', withAuth, async (req, res) => {
+  router.post('/newblogpost', withAuth, async (req, res) => {
     try {
         res.render('new-blogpost', {
             loggedIn: req.session.loggedIn,
@@ -55,6 +55,10 @@ router.get('/dashboard', async (req, res) => {
         res.status(500).json(err);
     }
   });
+  
+  router.get("/newblogpost", (req, res) => {
+    res.render("newBlogpost", { loggedIn: req.session.loggedIn });
+});
   
   
 module.exports = router;
