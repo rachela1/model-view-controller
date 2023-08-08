@@ -2,13 +2,13 @@ const { Blogpost } = require('../models');
 
 const postData = [
   {
-    title: 'Blossoming Apricot',
+    title: 'Blogpost 1',
     content:
-      'Branches with pink apricot blossoms against a blue background.',
+      'This is Blogpost 1',
   },
   {
-    title: 'Cosmos Flowers',
-    content: 'Pink cosmos flowers against a blue sky.',
+    title: 'Blogpost 2',
+    content: 'This is Blogpost 2',
   },
 ];
 

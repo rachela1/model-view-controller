@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Blogpost, User } = require('../models');
+const { Blogpost, User, Comments } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -44,6 +44,62 @@ router.get('/dashboard', async (req, res) => {
     }
   });
   
+  router.get("/blogpost/:id", async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+      } else {
+        try {
+          const blogpostData = await Blogpost.findByPk(req.params.id, { include: [User] });
+          const commentData = await Comments.findAll({ where: { id: req.params.id }, include: [User]});
+
+          const blogpost = blogpostData.get({ plain: true});
+          const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+          res.render("addComment", { 
+            blogpost,
+            comments,
+            loggedIn: req.session.loggedIn,
+        });
+        } catch (err) {
+          console.error(err);
+          res.status(500).json(err);
+        }
+      }
+});
+
+  router.get("/blogpost/:id", async (req, res) => {
+    if (!req.session.loggedIn) {
+        res.redirect('/login');
+      } else {
+        try {
+          const blogpostData = await Blogpost.findByPk(req.params.id, { include: [User] });
+          const commentData = await Comments.findAll({ where: { id: req.params.id }, include: [User]});
+
+          const blogpost = blogpostData.get({ plain: true});
+          const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+          res.render("addComment", { 
+            blogpost,
+            comments,
+            loggedIn: req.session.loggedIn,
+        });
+        } catch (err) {
+          console.error(err);
+          res.status(500).json(err);
+        }
+      }
+});
+
+router.get('/dashboard/:id', async (req, res) => {
+    try {
+      const blogpostData = await Blogpost.findByPk(req.params.id, { include: [{ model: User, attributes: ["username"] }] });
+      const blogpost = blogpostData.get({ plain: true });
+      res.render("updateBlogpost", { blogpost, loggedIn: req.session.loggedIn });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json(err);
+    }
+});
 
   router.get('/newblogpost', withAuth, async (req, res) => {
     try {
