@@ -3,7 +3,7 @@ const newPostFormHandler = async (event) => {
     
     const title = document.querySelector("#blogpost-title").value;
     console.log(title);
-    const description = document.querySelector("#blogpost-description").value;
+    const content = document.querySelector("#blogpost-description").value;
     console.log(content);
   
     if (title && content) {

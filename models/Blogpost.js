@@ -15,10 +15,6 @@ Blogpost.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        author: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         content: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -29,10 +25,6 @@ Blogpost.init(
                 model: 'user',
                 key: 'id',
             },
-        },
-        CreatedOn: {
-            type: DataTypes.DATE,
-            allowNull: false,
         },
     },
     {
