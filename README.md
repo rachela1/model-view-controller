@@ -7,7 +7,7 @@ This web application is a blog all about tech. You can create and account, creat
 For installation of this app :
 
 1. copy repository to your local machine
-2. run npm run seed
+2. run npm run install
 3. run npm run watch
 
 Then you can view the functionality of the web app.
